@@ -2,28 +2,117 @@
 <html>
   <head>
       <title>Rock Paper Scissors</title>
+      <style>
+
+        body{
+          background-color: rgb(25, 25, 25);
+          font-family: Arial;
+          color: white;
+        }
+
+        .title{
+          font-size: 30px;
+          font-weight: bold;
+        }
+
+        .moves-icon{
+          height: 100px;
+
+        }
+
+        .moves-rock-button{
+          background-color: transparent;
+          border: 3px solid rgb(231, 105, 214);
+          width: 120px;
+          height: 120px;
+          border-radius: 60px;
+          cursor: pointer;
+          margin-right: 10px;
+        }
+
+        .moves-paper-button{
+          background-color: transparent;
+          border: 3px solid rgb(74, 168, 231);
+          width: 120px;
+          height: 120px;
+          border-radius: 60px;
+          cursor: pointer;
+          margin-right: 10px;
+
+        }
+
+        .moves-scissors-button{
+          background-color: transparent;
+          border: 3px solid rgb(240, 237, 60);
+          width: 120px;
+          height: 120px;
+          border-radius: 60px;
+          cursor: pointer;
+          margin-right: 10px;
+
+        }
+
+        .reset-score-button{
+          border-color: white;
+          border: none;
+          padding: 8px 15px;
+          font-size: 15px;
+          cursor: pointer;
+          margin-top: 30px;
+        }
+
+        .result{
+          font-size: 25px;
+          font-weight: bold;
+          margin-top: 20px;
+
+        }
+        .moves{
+          font-size: 15px;
+          font-weight: bold;
+          padding-top: 30px;
+        }
+        .score{
+          margin-top: 30px;
+        }
+
+        .moves-icon-moves{
+          height: 60px;
+          margin-top: 10px;
+          vertical-align: -25px;
+        
+        }
+       
+        
+      </style>
       
   </head>
   <body> 
-    <p>Rock Paper Scissors</p>
+    <p class = "title">
+      <span style ="color: rgb(231, 105, 214) ">Rock </span>
+      <span style = "color: rgb(74, 168, 231)" >Paper</span>
+      <span style = "color: rgb(240, 237, 60)">Scissors</span>
+    </p>
+
+    
     
     <button onclick = "
       playGame('rock');
-    ">Rock</button>
+    " class = "moves-rock-button"><img src = "images/rock.png" class = "moves-icon"></button>
 
 
     <button onclick = "
       playGame('paper');
-    ">Paper</button>
+    " class = "moves-paper-button"><img src = "images/paper.png" class = "moves-icon"></button>
 
 
     <button onclick="
      playGame('scissors');
-    ">Scissors</button>
+    " class = "moves-scissors-button"><img src = "images/scissors.png" class = "moves-icon"></button>
 
-    <p class="js-moves"></p>
-    <p class="js-result"></p>
-    <p class="js-score"></p>
+    <p class="js-moves moves"></p>
+    <p class="js-result result"></p>
+    <p class="js-score score"></p>
    
 
    <button onclick="
@@ -32,7 +121,7 @@
       score.ties = 0;
       localStorage.removeItem('score');
       showScore();
-   ">Reset Score</button>
+   " class="reset-score-button">Reset Score</button>
 
     <script>
       let score = JSON.parse(localStorage.getItem('score')) || {
@@ -49,37 +138,37 @@
         let result = '';
         if(playerMove === 'scissors'){
           if(computerChoice === 'rock'){
-            result = 'Computer wins!';
+            result = `<span style = "color: red">Computer wins!</span>`;
           }else if(computerChoice === 'paper'){
-            result = 'You win!';
+            result = `<span style = "color: green">You win!</span>`;
           }else if(computerChoice === 'scissors'){
             result = 'Tie!';
           }
 
         }else if(playerMove === 'paper'){
           if(computerChoice === 'rock'){
-            result = 'You win!';
+            result = `<span style = "color: green">You win!</span>`;
           }else if(computerChoice === 'paper'){
             result = 'Tie!';
           }else if(computerChoice === 'scissors'){
-            result = 'Computer wins!';
+            result = `<span style = "color: red">Computer wins!</span>`;
           }
           
         }else if(playerMove === 'rock'){
           if(computerChoice === 'rock'){
             result = 'Tie!';
           }else if(computerChoice === 'paper'){
-            result = 'Computer wins!';
+            result = `<span style = "color: red">Computer wins!</span>`;
           }else if(computerChoice === 'scissors'){
-            result = 'You win!';
+            result = `<span style = "color: green">You win!</span>`;
           } 
         }
          
        
 
-        if(result === 'You win!'){
+        if(result === `<span style = "color: green">You win!</span>`){
           score.wins += 1;
-        } else if(result === 'Computer wins!'){
+        } else if(result === `<span style = "color: red">Computer wins!</span>`){
           score.losses += 1;
         } else if( result === 'Tie!'){
           score.ties += 1;
@@ -88,12 +177,17 @@
 
         localStorage.setItem('score', JSON.stringify(score));
 
-        document.querySelector('.js-result').innerHTML = result;
-        document.querySelector('.js-moves').innerHTML = `You picked ${playerMove}. Computer picked ${computerChoice
-        }.`;
         showScore();
         
-       
+        document.querySelector('.js-result').innerHTML = result;
+
+        document.querySelector('.js-moves')
+        .innerHTML = `You  
+      <img src="images/${playerMove}.png" class = "moves-icon-moves">
+      <img src ="images/${computerChoice}.png" class = "moves-icon-moves">
+     Computer `;
+        
+      }
 
       function pickComputerChoice(){
         const randomNumber = Math.random();
@@ -112,10 +206,12 @@
       }
 
       
-      }
+      
 
       function showScore(){
-        document.querySelector('.js-score').innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
+        document.querySelector('.js-score')
+        .innerHTML = `<span style ="color: green">Wins: ${score.wins}</span>,
+        <span style ="color: red "> Losses: ${score.losses}</span>, Ties: ${score.ties}`;
       }
       
 
