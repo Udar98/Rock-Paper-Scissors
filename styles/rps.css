@@ -1,0 +1,78 @@
+body{
+  background-color: rgb(25, 25, 25);
+  font-family: Arial;
+  color: white;
+}
+
+.title{
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.moves-icon{
+  height: 100px;
+
+}
+
+.moves-rock-button{
+  background-color: transparent;
+  border: 3px solid rgb(231, 105, 214);
+  width: 120px;
+  height: 120px;
+  border-radius: 60px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.moves-paper-button{
+  background-color: transparent;
+  border: 3px solid rgb(74, 168, 231);
+  width: 120px;
+  height: 120px;
+  border-radius: 60px;
+  cursor: pointer;
+  margin-right: 10px;
+
+}
+
+.moves-scissors-button{
+  background-color: transparent;
+  border: 3px solid rgb(240, 237, 60);
+  width: 120px;
+  height: 120px;
+  border-radius: 60px;
+  cursor: pointer;
+  margin-right: 10px;
+
+}
+
+.reset-score-button{
+  border-color: white;
+  border: none;
+  padding: 8px 15px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 30px;
+}
+
+.result{
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 20px;
+
+}
+.moves{
+  font-size: 15px;
+  font-weight: bold;
+  padding-top: 30px;
+}
+.score{
+  margin-top: 30px;
+}
+
+.moves-icon-moves{
+  height: 60px;
+  margin-top: 10px;
+  vertical-align: -25px;
+
+}
